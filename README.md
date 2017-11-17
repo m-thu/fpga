@@ -31,6 +31,10 @@ XC3S500E: package FG320 (320-ball fine-pitch ball grid array), speed grade 4, te
 
 Using the integrated Xilinx Platform Cable on Ubuntu 14.04 with ISE iMPACT:
 
+```sh
+sudo apt-get install fxload
+```
+
 Replace the contents of `/etc/udev/rules.d/52-xilinx-pcusb.rules` with (from <https://github.com/timvideos/HDMI2USB/wiki/Xilinx-Platform-Cable-USB-under-Linux>):
 ```sh
 ATTRS{idVendor}=="03fd", ATTRS{idProduct}=="0008", MODE="666"
