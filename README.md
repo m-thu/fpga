@@ -23,6 +23,7 @@ XC3S500E: package FG320 (320-ball fine-pitch ball grid array), speed grade 4, te
 * [Spartan-3E FPGA Family](https://www.xilinx.com/support/documentation/data_sheets/ds312.pdf)
 * [Nexys 2 Reference Manual](https://reference.digilentinc.com/_media/reference/programmable-logic/nexys-2/nexys2_rm.pdf)
 * [Master UCF 500](https://reference.digilentinc.com/_media/reference/programmable-logic/nexys-2/nexys2_500general_ucf.zip)
+* [Schematic](https://reference.digilentinc.com/_media/reference/programmable-logic/nexys-2/nexys2_sch.pdf)
 
 Digilent Spartan-3E Starter
 ---------------------------
