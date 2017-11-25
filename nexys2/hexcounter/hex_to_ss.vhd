@@ -1,5 +1,7 @@
 -- Hexadecimal to seven-segment LED decoder
 
+-- ghdl -a --std=08 hex_to_ss.vhd
+
 --     a
 --   ------
 -- f |    | b
@@ -9,7 +11,7 @@
 --   |    |
 --   ------
 --     d
--- 
+--
 -- Common anode, individual cathodes
 --
 -- ss : out std_logic_vector (6 downto 0)
