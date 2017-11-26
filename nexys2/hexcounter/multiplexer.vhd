@@ -31,11 +31,7 @@ begin
 		if rst = '1' then
 			count <= (others => '0');
 		elsif rising_edge(clk) then
-			if count < (2**N -1) then
-				count <= count + 1;
-			else
-				count <= (others => '0');
-			end if;
+			count <= count + 1;
 		end if;
 	end process;
 

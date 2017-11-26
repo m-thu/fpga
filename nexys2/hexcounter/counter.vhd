@@ -33,12 +33,8 @@ begin
 			delay := (others => '0');
 		elsif rising_edge(clk) then
 			if delay = DEL then
-				if counti < (2**N - 1) then
-					counti <= counti + 1;
-				else
-					counti <= (others => '0');
-				end if;
 				delay := (others => '0');
+				counti <= counti + 1;
 			else
 				delay := delay + 1;
 			end if;
