@@ -8,7 +8,7 @@ use ieee.numeric_std.all;
 
 entity debounce is
 	generic (
-		-- Allow DELAY number of clock cycles for input to stabilize
+		-- Require DELAY number of clock cycles for input to stabilize
 		-- 20 ms / (1/50 MHz) = 1e6
 		DELAY : integer := 1e6;
 		-- Counter width for DELAY
