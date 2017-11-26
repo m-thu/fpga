@@ -30,14 +30,11 @@ begin
 		variable count : unsigned (N_DELAY-1 downto 0);
 	begin
 		if rst = '1' then
-			level <= '0';
 			state := ZERO;
 			count := (others => '0');
 		elsif rising_edge(clk) then
 			case state is
 				when ZERO =>
-					level <= '0';
-
 					if switch = '1' then
 						state := WAIT1;
 						count := to_unsigned(DELAY, count'length);
@@ -46,8 +43,6 @@ begin
 					end if;
 
 				when WAIT1 =>
-					level <= '0';
-
 					if switch = '1' then
 						count := count - 1;
 						if (count = 0) then
@@ -59,8 +54,6 @@ begin
 						state := ZERO;
 					end if;
 				when ONE =>
-					level <= '1';
-
 					if switch = '0' then
 						state := WAIT0;
 						count := to_unsigned(DELAY, count'length);
@@ -69,8 +62,6 @@ begin
 					end if;
 
 				when WAIT0 =>
-					level <= '1';
-
 					if switch = '0' then
 						count := count - 1;
 						if (count = 0) then
@@ -83,9 +74,21 @@ begin
 					end if;
 
 				when others =>
-					level <= '0';
 					state := ZERO;
 			end case;
 		end if;
+
+		case state is
+			when ZERO =>
+				level <= '0';
+			when WAIT1 =>
+				level <= '0';
+			when ONE =>
+				level <= '1';
+			when WAIT0 =>
+				level <= '1';
+			when others =>
+				level <= '0';
+		end case;
 	end process;
 end architecture;
