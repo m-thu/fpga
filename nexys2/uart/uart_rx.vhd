@@ -1,6 +1,5 @@
 -- UART RX (9600, N, 8, 1)
 
--- ghdl -a --std=08 baudrate_gen.vhd
 -- ghdl -a --std=08 uart_rx.vhd
 
 -- Oversampling factor: 16
@@ -26,6 +25,7 @@ entity uart_rx is
 	port (
 		clk, rst : in std_logic;
 		rx : in std_logic;
+		tick : in std_logic;
 		-- Gets asserted for one clock cycle when data is valid
 		done : out std_logic;
 		data : out std_logic_vector (7 downto 0)
@@ -34,7 +34,6 @@ end entity;
 
 architecture behav of uart_rx is
 	type state_type is (IDLE, START, RDATA, STOP);
-	signal tick : std_logic;
 	signal state, next_state : state_type;
 	
 	-- Current data bit
@@ -44,10 +43,6 @@ architecture behav of uart_rx is
 	-- Sampling counter
 	signal sample_count, next_sample_count : unsigned (3 downto 0);
 begin
-	-- Baudrate: 9600
-	baudrate_gen : entity work.baudrate_gen
-		port map (clk => clk, rst => rst, tick => tick);
-
 	data <= rx_data;
 
 	-- Registers

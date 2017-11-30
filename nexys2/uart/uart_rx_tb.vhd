@@ -1,5 +1,6 @@
 -- Testbench for UART RX
 
+-- ghdl -a --std=08 baudrate_gen.vhd
 -- ghdl -a --std=08 uart_rx_tb.vhd
 -- ghdl -r --std=08 uart_rx_tb --wave=uart_rx_tb.ghw
 -- gtkwave uart_rx_tb.ghw
@@ -15,6 +16,7 @@ architecture behav of uart_rx_tb is
 	constant BITLENGTH : delay_length := 104.167 us; -- 9600 Baud
 
 	signal clk, rst : std_logic := '0';
+	signal tick : std_logic := '0';
 	signal rx : std_logic := '1';
 	signal done : std_logic := '0';
 	signal data : std_logic_vector (7 downto 0);
@@ -37,11 +39,15 @@ architecture behav of uart_rx_tb is
 	end procedure;
 
 begin
+	-- Baudrate: 9600
+	baudrate_gen : entity work.baudrate_gen
+		port map (clk => clk, rst => rst, tick => tick);
+
 	-- Unit under test
 	uut : entity work.uart_rx
 		--generic map ()
 		port map (
-			clk => clk, rst => rst,
+			clk => clk, rst => rst, tick => tick,
 			rx => rx, done => done, data => data
 		);
 
